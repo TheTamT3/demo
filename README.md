@@ -1,6 +1,14 @@
 # Travel Agent Project
 
 This project demonstrates the creation of an agent for the travel industry, specifically focused on a use case for booking flight tickets.
+
+## TechStack
+* MySQL
+* MongoDB
+* FastAPI
+* Chainlit
+* OpenAI 
+
 ## Main Components
 
    #### 1. Flight Service
