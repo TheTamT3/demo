@@ -40,7 +40,7 @@ def book_flight(
         return system_error_msg
 
 
-def get_flights(departure_city: str, arrival_city: str , departure_date: str = None) -> str:
+def get_flights(departure_city: str, arrival_city: str, departure_date: str = None) -> str:
     try:
         flights = Flight.get_flights(departure_city, arrival_city, departure_date)
         output = ""

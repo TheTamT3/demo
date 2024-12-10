@@ -29,8 +29,5 @@ Kết quả trả về in ra dạng bảng.
 
 async def booking_handler(messages):
     messages = [{"role": "system", "content": system_prompt}] + messages
-    functions = {
-        "book_flight": book_flight,
-        "get_flights": get_flights
-    }
+    functions = {"book_flight": book_flight, "get_flights": get_flights}
     return await handler(messages, tools, functions=functions)

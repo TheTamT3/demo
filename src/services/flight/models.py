@@ -7,14 +7,14 @@ from .db import close_connection, create_connection
 
 class Flight:
     def __init__(
-            self,
-            flight_id: str,
-            departure_city: str,
-            arrival_city: str,
-            departure_date: str,
-            arrival_date: str,
-            available_economy_seats: int,
-            available_business_seats: int,
+        self,
+        flight_id: str,
+        departure_city: str,
+        arrival_city: str,
+        departure_date: str,
+        arrival_date: str,
+        available_economy_seats: int,
+        available_business_seats: int,
     ):
         self.flight_id = flight_id
         self.departure_city = departure_city
@@ -82,13 +82,13 @@ class Flight:
 
 class Booking:
     def __init__(
-            self,
-            booking_id: str,
-            flight_id: str,
-            seat_economy_count: int,
-            seat_business_count: int,
-            user_id: str,
-            user_phone_number: str,
+        self,
+        booking_id: str,
+        flight_id: str,
+        seat_economy_count: int,
+        seat_business_count: int,
+        user_id: str,
+        user_phone_number: str,
     ):
         self.booking_id = booking_id
         self.flight_id = flight_id
@@ -99,13 +99,13 @@ class Booking:
 
     @classmethod
     def add_booking(
-            cls,
-            flight: Flight,
-            returned_flight: Flight = None,
-            seat_economy_count: int = 0,
-            seat_business_count: int = 0,
-            user_id: str = None,
-            user_phone_number: str = None,
+        cls,
+        flight: Flight,
+        returned_flight: Flight = None,
+        seat_economy_count: int = 0,
+        seat_business_count: int = 0,
+        user_id: str = None,
+        user_phone_number: str = None,
     ):
         if not flight.check_seat_availability(seat_economy_count, seat_business_count):
             return "Not enough seat available for departure flight"
@@ -139,8 +139,8 @@ class Booking:
             metadata["one_way_booking"] = {
                 "departure_city": flight.departure_city,
                 "arrival_city": flight.arrival_city,
-                "departure_date": flight.departure_date.strftime('%Y-%m-%d %H:%M:%S'),
-                "arrival_date": flight.arrival_date.strftime('%Y-%m-%d %H:%M:%S'),
+                "departure_date": flight.departure_date.strftime("%Y-%m-%d %H:%M:%S"),
+                "arrival_date": flight.arrival_date.strftime("%Y-%m-%d %H:%M:%S"),
             }
             if seat_economy_count > 0:
                 metadata["one_way_booking"]["seat_economy_count"] = seat_economy_count
@@ -157,8 +157,8 @@ class Booking:
                 metadata["return_flight"] = {
                     "departure_city": returned_flight.departure_city,
                     "arrival_city": returned_flight.arrival_city,
-                    "departure_date": returned_flight.departure_date.strftime('%Y-%m-%d %H:%M:%S'),
-                    "arrival_date": returned_flight.arrival_date.strftime('%Y-%m-%d %H:%M:%S'),
+                    "departure_date": returned_flight.departure_date.strftime("%Y-%m-%d %H:%M:%S"),
+                    "arrival_date": returned_flight.arrival_date.strftime("%Y-%m-%d %H:%M:%S"),
                 }
                 if seat_economy_count > 0:
                     metadata["return_flight"]["seat_economy_count"] = seat_economy_count
