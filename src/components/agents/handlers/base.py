@@ -32,27 +32,23 @@ async def chat_completion_request(
 
 
 async def handler(messages: list[dict[str, Any]], tools: list[dict[str, Any]] = None, functions: dict[str, Callable] = None):
-    # logging.warning(f"Messages: {messages}")
-    for mess in messages:
-        print(f"{mess['role']}: {mess['content']}")
     assistant_message = await chat_completion_request(messages, tools)
     answer = assistant_message.choices[0].message.content
-
-    messages.append(assistant_message.choices[0].message)
     tool_calls = assistant_message.choices[0].message.tool_calls
 
     if tool_calls:
-        logging.warning("Calling tool....")
+        messages.append(assistant_message.choices[0].message)
         tool_call_id = tool_calls[0].id
         tool_function_name = tool_calls[0].function.name
         tool_query_string = json.loads(tool_calls[0].function.arguments)
+        logging.warning(f"Call tool {tool_function_name}....")
+        logging.warning(f"Tool query string: {tool_query_string}")
 
         func = functions[tool_function_name]
         result = func(**tool_query_string)
         messages.append({
             "role": "tool",
             "tool_call_id": tool_call_id,
-            "name": tool_function_name,
             "content": result,
         })
 

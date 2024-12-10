@@ -38,3 +38,15 @@ def book_flight(
     except Exception as e:
         logging.error(e)
         return system_error_msg
+
+
+def get_flights(departure_city: str, arrival_city: str , departure_date: str = None) -> str:
+    try:
+        flights = Flight.get_flights(departure_city, arrival_city, departure_date)
+        output = ""
+        for flight in flights:
+            output += f"{flight.__str__()}\n"
+        return output
+    except Exception as e:
+        logging.error(e)
+        return system_error_msg
