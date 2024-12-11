@@ -13,6 +13,8 @@ tenacity = "^9.0.0"
 termcolor = "^2.5.0"
 pydantic = "^2.9.2"
 mysql-connector-python = "^9.1.0"
+pydantic-settings = "^2.6.1"
+pymongo = "^4.10.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.3"
